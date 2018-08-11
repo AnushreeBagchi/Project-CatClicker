@@ -1,11 +1,14 @@
 h2{
     color: rebeccapurple;
+    display: flex;
+    justify-content: center;
 
 }
 
 .cat {
     width: 20em;
     height: 20em;
+  
     
 }
 
@@ -14,11 +17,23 @@ h2{
     justify-content: center;
 }
 
-.content{
+.nameSection{
     display: flex;
 }
 
 .name {
     display: flex;
     justify-content: center;
+}
+
+.catnames{
+    
+    font-weight: bold;
+    color: rebeccapurple;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+.catname {
+    margin: 1em;
 }

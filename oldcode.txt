@@ -1,0 +1,53 @@
+// Cat clikcer code to display all the cat images in the screen
+
+let count=0;
+const cats=['kittie','Jane'];
+const images=['image.png','catImage2.png'];
+
+for (var cat in cats)
+{
+    $('.content').append(`<div >
+                        <h3 class='name' >${cats[cat]}</h3>
+                        <div >
+                            <img class='cat' src =${images[cat]} alt="Unable to load image">
+                            <div class='counterBlock'>
+                                <div>Click count =  </div>
+                                <div class='counter'> 0 </div>
+                            </div>
+                         </div>
+                    </div>`);
+}
+
+$('.cat').on('click',function(){
+    count++;
+    //console.log(count);
+    //$('.counter').text(count);
+    var c=$(this).siblings().children('.counter').text();
+    c++;
+    $(this).siblings().children('.counter').text(c);
+    
+});
+
+
+//////////try 1
+ // $('.nameSection').append(`<div class='catname'>${cats[cat].name}</div>`);
+   let count =0; 
+   var elem= document.createElement('div');
+    elem.textContent=cats[cat].name;
+    elem.addEventListener('click',(function(catcopy){
+        return function (){
+            var elemImage= document.createElement('img');
+            elemImage.setAttribute('src',`Images/${cats[catcopy].image}` );
+            elemImage.setAttribute('alt','No image loaded' );
+            elemImage.setAttribute('class','cat' );
+            elemImage.addEventListener('click',function (){
+                count++;
+                var elemCount= document.createElement('div');
+                elemCount.textContent=count;
+            });
+            document.body.appendChild(elemImage);
+        }
+    })(cat));
+    document.body.appendChild(elem);
+
+    
