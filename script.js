@@ -24,7 +24,7 @@ $('.catname').on ('click',function (){
         }
     }
     $('.imageSection').append(`<div class='catname'>${cats[location].name}</div>`);
-    $('.imageSection').append(`<div class='counter'>Clicks= ${cats[location].count} </div>`)
+    $('.imageSection').append(`<div class='counter'>Clicks= ${cats[location].count} </div>`);
     $('.imageSection').append( `<img class='cat' src='Images/${cats[location].image}' alt='No image found'>`);
     $('.cat').on('click',function(){
         cats[location].count++;
