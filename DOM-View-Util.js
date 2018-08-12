@@ -1,35 +1,66 @@
 var view = {
-    displayCatList: function (catname) {
-        $('.catnames').append(`<p class='catname'>${catname}</p>`);
+    displayCatList: function (cats) {
+        $('.catnames').empty();
+        for (var cat in cats)
+        {
+            $('.catnames').append(`<p class='catname'>${cats[cat].name}</p>`);
+        }
+        
+    },
+    reset: function (){
+        $('.catnames').empty();
+        $('.imageSection').empty();
+        $('.btnAdmin').addClass('hide');
+        $('.adminpage').addClass('hide');
     },
     emptyCatView: function () {
         $('.imageSection').empty();
     },
-    viewCatName: function (catName) {
+    emptycontent: function (){
+        $('.catnames').empty();
+    }
+    ,
+    displaySelectedCat : function (catName,clickCount,imagePath){
+        view.emptyCatView();
         $('.imageSection').append(`<div class='catname'>${catName}</div>`);
-    },
-    viewCatClicks: function (clickCount) {
         $('.imageSection').append(`<div class='counter'>Clicks= ${clickCount} </div>`);
-    },
-    viewCatImage: function (imagePath) {
         $('.imageSection').append(`<img class='cat' src='Images/${imagePath}' alt='No image found'>`);
+        
     },
     onNameClick: function (func) {
         $('.catname').on('click', function () {
             func($(this).text());
         });
     },
-    updateCount: function (location, count) {
-        count++;
-        cats[location].count++;
-        $('.counter').text(`Clicks=${count}`);
+    onClickCatImage: function (func) {
+        $('.imageSection').on ('click', function (event){
+            if (event.target.className==='cat')
+            {
+                func();
+            }
+        }); 
     },
-    onClickCatImage: function (location) {
-        $('.cat').on('click', function () {
-            view.updateCount(location, cats[location].count);
+    displayAdminBtn:  function (){
+        $('.btnAdmin').removeClass('hide');
+    },   
+    onadminclick: function  (func){
+        $('.btnAdmin').on('click',func);
+     }, 
+    showAdminPage: function (){
+        $('.adminpage').removeClass('hide');
+    },
+    onSaveClick: function (func){
+        $('.save').on('click',function (){
+            var newname=$('.inputname').val();
+            var newurl=$('.inputurl').val();
+            var newClickCount  =$('.inputclicks').val();
+            func(newname,newurl,newClickCount);
+
         });
     }
+
 };
+
 
 
 

@@ -17,5 +17,7 @@ var model={
             }
         }
         return  location;
-    }
+    },
+    currentLocation :undefined 
 };
+

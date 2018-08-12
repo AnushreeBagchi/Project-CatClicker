@@ -37,3 +37,7 @@ h2{
 .catname {
     margin: 1em;
 }
+
+.hide{
+    display: none;
+}
