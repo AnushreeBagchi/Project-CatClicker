@@ -7,21 +7,23 @@ var octopus ={
         view.onadminclick(function()  {
             view.showAdminPage();
             view.onSaveClick((newname, newurl,newClickCount)=>octopus.updateCatArray(newname, newurl,newClickCount));
+            view.oncancelClick(); 
         });
         view.onNameClick (octopus.onCatNameClick );
+        view.onClickCatImage (function (){
+            octopus.incrementCounter(model.currentLocation);
+        });
     },
     onCatNameClick: function onCatNameClick(catname){
-        view.emptyCatView();
+        //view.emptyCatView();
         var location =model.catArrayLocation(catname);
         model.currentLocation=location;
         octopus.rendercat(location);       
-        view.onClickCatImage (function (){
-            octopus.incrementCounter(location);
-        });
-        view.displayAdminBtn();
-    
+        view.displayAdminBtn();    
     },
-    incrementCounter: function (location){        
+    
+    incrementCounter: function (location){   
+        console.log(location,cats[location].count);     
         cats[location].count++;
         octopus.rendercat(location);
   
@@ -31,11 +33,10 @@ var octopus ={
     },
     updateCatArray: function (newname, newurl,newClickCount){
        console.log(model.currentLocation);
-       var location= model.currentLocation;
-       //debugger;
-       cats[location].name=newname;
-       cats[location].image=newurl;
-       cats[location].count=newClickCount;
+       var currlocation= model.currentLocation;       
+       cats[currlocation].name=newname;
+       cats[currlocation].image=newurl;
+       cats[currlocation].count=newClickCount;
        octopus.onStart();
 
     }
